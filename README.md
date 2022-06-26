@@ -1,6 +1,6 @@
 # Dummy client-server game
 
-## Monorepo:
+## Modules:
 * Website
 * Server (todo: separate to game server and login server)
 * Client (first there will be a stub. Todo: unity3d client or something else)
