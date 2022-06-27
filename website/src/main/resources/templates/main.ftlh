@@ -2,7 +2,8 @@
 <#import "parts/login_form.ftlh" as l>
 
 <@c.page>
-    Log In
-    <@l.login "/login" />
-    <a href="/registration">Register</a>
+    <div>
+        <@l.logout />
+        <span><a href="/user">User list</a></span>
+    </div>
 </@c.page>
