@@ -14,12 +14,9 @@ import ru.rxnnct.dummyclientservergame.website.service.UserService
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // TODO: 28.06.2022 populate db (first admin)
-class WebSecurityConfig(val userService: UserService, val passwordEncoder: PasswordEncoder) : WebSecurityConfigurerAdapter() {
+class WebSecurityConfig(val userService: UserService) : WebSecurityConfigurerAdapter() {
 
-    @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder(8)
-    }
+    var passwordEncoder: PasswordEncoder = passwordEncoder()
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {

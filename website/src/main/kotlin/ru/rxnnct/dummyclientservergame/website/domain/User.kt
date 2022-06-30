@@ -3,6 +3,7 @@ package ru.rxnnct.dummyclientservergame.website.domain
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import javax.persistence.*
+import javax.validation.constraints.NotBlank
 
 @Entity
 @Table(name = "usr")
@@ -10,8 +11,13 @@ class User : UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
+
+    @NotBlank(message = "Empty username")
     private var username: String? = null
+    @NotBlank(message = "Empty password")
     private var password: String? = null
+    @Transient
+    private var passwordConfirmation: String? = null
     var isActive = false
 
     @ElementCollection(targetClass = Role::class, fetch = FetchType.EAGER)
@@ -52,6 +58,14 @@ class User : UserDetails {
     }
 
     fun setPassword(password: String?) {
+        this.password = password
+    }
+
+    fun getPasswordConfirmation(): String {
+        return password!!
+    }
+
+    fun setPasswordConfirmation(password: String?) {
         this.password = password
     }
 }
