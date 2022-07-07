@@ -19,13 +19,13 @@ class RegistrationController(val userService: UserService) {
     @PostMapping("/registration")
     fun addUser(@Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (user.password != user.getPasswordConfirmation()){
-            model.addAttribute("passwordError", "Wrong password!")
+            model.addAttribute("passwordConfirmationError", "Wrong password!")
         }
 
         if (bindingResult.hasErrors()) {
             val errors: MutableMap<String, String> = getErrors(bindingResult) as MutableMap<String, String>
 
-//            model.mergeAttributes(errors)
+            model.mergeAttributes(errors)
             model.addAttribute("map", errors)
 
             return "registration"
